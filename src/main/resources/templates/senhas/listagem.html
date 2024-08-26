@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{templates.html}">
+<head>
+    <title>Lista de Senhas</title>
+</head>
+<body>
+
+    <div layout:fragment="conteudo">
+
+        <h1>Lista de Senhas</h1>
+
+        <a href="/senhas/formulario">Novo</a>
+
+        <table>
+            <thead>
+            <tr>
+                <th>LINK</th>
+                <th>LOGIN</th>
+                <th>SENHA</th>
+                <th>AÇÕES</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="senha : ${lista}">
+                <td th:text="${senha.link}"></td>
+                <td th:text="${senha.login}"></td>
+                <td th:text="${senha.senha}"></td>
+                <td>
+                    <a th:href="@{/senhas/formulario?id={id}(id=${senha.id})}">Editar</a>
+
+                    <form action="/senhas" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="id" th:value="${senha.id}">
+                        <input type="submit" value="Excluir">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+
+</html>

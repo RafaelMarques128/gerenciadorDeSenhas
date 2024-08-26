@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt_br"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{templates.html}"
+>
+
+<head>
+    <title>Cadastro de senhas</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Cadastro de filme</h1>
+    <form method="post" action="/senhas">
+
+        <input type="hidden" name="_method" value="put" th:if="${senha != null}">
+        <input type="hidden" name="id" th:value="${senha?.id}">
+
+        <div>
+            <label for="link">Link:</label>
+            <input id="link" name="link" th:value="${senha?.link}">
+        </div>
+
+        <div>
+            <label for="login">Login:</label>
+            <input id="login" name="login" th:value="${senha?.link}">
+        </div>
+
+        <div>
+            <label for="senha">Senha:</label>
+            <input id="senha" name="senha" th:value="${senha?.link}">
+        </div>
+
+        <input type="submit" value="Cadastrar">
+    </form>
+</div>
+</body>
+</html>
